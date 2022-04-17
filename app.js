@@ -1,25 +1,26 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors = require("cors");
 
-const dishController = require('./controller/dishController');
-const orderController = require('./controller/orderController');
-
+const dishController = require("./controller/dishController");
+const orderController = require("./controller/orderController");
 
 const app = express();
 dotenv.config();
 
+app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Welcome to digitMenu api');
+app.get("/", (req, res) => {
+  res.send("Welcome to digitMenu api");
 });
 
-app.post('/addDish', dishController.addDish);
-app.get('/getDish' , dishController.getDish);
+app.post("/addDish", dishController.addDish);
+app.get("/getDish", dishController.getDish);
 
-app.post('/order' , orderController.placeOrder);
-app.get('/order' , orderController.getOrder);
+app.post("/order", orderController.placeOrder);
+app.get("/order", orderController.getOrder);
 
 const PORT = 3000 || process.env.PORT;
 const DB_URL = process.env.DB_URL;
@@ -34,4 +35,4 @@ mongoose
         console.log(`server running on ${PORT}`)
       ))
   )
-  .catch(error => console.log('ERROR:' + error.message));
+  .catch((error) => console.log("ERROR:" + error.message));
