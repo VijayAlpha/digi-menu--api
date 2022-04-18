@@ -22,7 +22,7 @@ app.get("/getDish", dishController.getDish);
 app.post("/order", orderController.placeOrder);
 app.get("/order", orderController.getOrder);
 
-const PORT = 3000 || process.env.PORT;
+const PORT =  process.env.PORT;
 const DB_URL = process.env.DB_URL;
 mongoose
   .connect(DB_URL, {
